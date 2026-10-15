@@ -1,20 +1,48 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.ARFoundation;
 
 public class ARPlacementManager : MonoBehaviour
 {
     [SerializeField] private PlacementReticle reticle;
+    [SerializeField] private ARPlaneManager planeManager;
     [SerializeField] private Camera arCamera;
     [SerializeField] private Transform station;
 
+    private bool isPlacing = true;
+
     public bool HasPreview => station.gameObject.activeSelf;
+    public bool IsConfirmed => !isPlacing;
 
     private void Update()
     {
-        if (WasTappedThisFrame() && reticle.HasHit)
+        if (isPlacing && WasTappedThisFrame() && reticle.HasHit)
         {
             PlacePreview(reticle.transform.position);
+        }
+    }
+
+    public void ConfirmPlacement()
+    {
+        if (!isPlacing || !HasPreview)
+        {
+            return;
+        }
+
+        isPlacing = false;
+        station.gameObject.AddComponent<ARAnchor>();
+        reticle.gameObject.SetActive(false);
+        SetPlaneDetection(false);
+    }
+
+    private void SetPlaneDetection(bool isOn)
+    {
+        planeManager.enabled = isOn;
+
+        foreach (ARPlane plane in planeManager.trackables)
+        {
+            plane.gameObject.SetActive(isOn);
         }
     }
 

@@ -722,6 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARPlacementManager
   reticle: {fileID: 5772029798353461831}
+  planeManager: {fileID: 380173468}
   arCamera: {fileID: 1870488576}
   station: {fileID: 1734030715}
 --- !u!1 &1999108285
