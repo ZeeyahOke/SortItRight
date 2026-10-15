@@ -1,36 +1,51 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class ARPlacementManager : MonoBehaviour
 {
-    [SerializeField] private ARRaycastManager raycastManager;
-    [SerializeField] private Transform reticle;
+    [SerializeField] private PlacementReticle reticle;
+    [SerializeField] private Camera arCamera;
+    [SerializeField] private Transform station;
 
-    private static readonly List<ARRaycastHit> hits = new List<ARRaycastHit>();
-    private bool hasHit;
-    private Pose hitPose;
-
-    public bool HasHit => hasHit;
-    public Pose HitPose => hitPose;
+    public bool HasPreview => station.gameObject.activeSelf;
 
     private void Update()
     {
-        UpdateReticle();
+        if (WasTappedThisFrame() && reticle.HasHit)
+        {
+            PlacePreview(reticle.transform.position);
+        }
     }
 
-    private void UpdateReticle()
+    private bool WasTappedThisFrame()
     {
-        Vector2 screenCentre = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
-        hasHit = raycastManager.Raycast(screenCentre, hits, TrackableType.PlaneWithinPolygon);
+        Pointer pointer = Pointer.current;
 
-        if (hasHit)
+        if (pointer == null || !pointer.press.wasPressedThisFrame)
         {
-            hitPose = hits[0].pose;
-            reticle.SetPositionAndRotation(hitPose.position, hitPose.rotation);
+            return false;
         }
 
-        reticle.gameObject.SetActive(hasHit);
+        return EventSystem.current == null || !EventSystem.current.IsPointerOverGameObject();
+    }
+
+    private void PlacePreview(Vector3 position)
+    {
+        station.SetPositionAndRotation(position, RotationFacingCamera(position));
+        station.gameObject.SetActive(true);
+    }
+
+    private Quaternion RotationFacingCamera(Vector3 position)
+    {
+        Vector3 toCamera = arCamera.transform.position - position;
+        toCamera.y = 0f;
+
+        if (toCamera.sqrMagnitude < 0.0001f)
+        {
+            return Quaternion.identity;
+        }
+
+        return Quaternion.LookRotation(toCamera);
     }
 }
