@@ -116,3 +116,7 @@ InitTestScene*.unity*
 .idea/
 *.ipa
 .DS_Store
+
+/[Aa]ssets/UnityXRContent/
+/[Aa]ssets/UnityXRContent.meta
+/ContentPackages/
