@@ -36,6 +36,20 @@ public class ARPlacementManager : MonoBehaviour
         SetPlaneDetection(false);
     }
 
+    public void ResetPlacement()
+    {
+        ARAnchor anchor = station.GetComponent<ARAnchor>();
+
+        if (anchor != null)
+        {
+            Destroy(anchor);
+        }
+
+        isPlacing = true;
+        reticle.gameObject.SetActive(true);
+        SetPlaneDetection(true);
+    }
+
     private void SetPlaneDetection(bool isOn)
     {
         planeManager.enabled = isOn;
