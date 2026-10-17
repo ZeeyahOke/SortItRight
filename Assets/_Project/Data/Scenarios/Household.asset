@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3657de32e3e14923843bdfa9949ddf2, type: 3}
+  m_Name: Household
+  m_EditorClassIdentifier: Assembly-CSharp::ScenarioData
+  scenarioId: household
+  displayName: Household
+  sessionItemCount: 30
+  itemPool:
+  - {fileID: 11400000, guid: ed8a32b14e364fe290ab84edb89c6151, type: 2}
+  - {fileID: 11400000, guid: 0a0bdf75c9324d898eaecdb936ddec27, type: 2}
+  - {fileID: 11400000, guid: e2642653a4b642daadf6b8905a0baf75, type: 2}
+  - {fileID: 11400000, guid: 7012e8e02dcd425980409a8a20690081, type: 2}
+  - {fileID: 11400000, guid: bfbcbbdf741d46a8854210ca5c862c51, type: 2}
+  - {fileID: 11400000, guid: fd38861fe6804c0f8140fdd86647b065, type: 2}
+  - {fileID: 11400000, guid: a55c200a5cd34c9c85d6d88f5f2c3dc4, type: 2}
+  - {fileID: 11400000, guid: 88367914bab943f89b30854ea2808302, type: 2}
+  - {fileID: 11400000, guid: 65f16edc21ec430dab67ba2c31026f02, type: 2}
+  - {fileID: 11400000, guid: ca19361b87cf40feaf11c1640b892232, type: 2}
+  - {fileID: 11400000, guid: b1966c7d3bb946a9a52c9ac23ed0b9e7, type: 2}
+  - {fileID: 11400000, guid: e621396395e542c084b8d35edfb0a089, type: 2}
+  - {fileID: 11400000, guid: 41fd3569b229438ea05db5ab262cdd55, type: 2}
+  - {fileID: 11400000, guid: 5068828cb7944ba0a4698428c54be6c2, type: 2}
+  - {fileID: 11400000, guid: 66dc386c8c984972abb88a96dc10e446, type: 2}
+  - {fileID: 11400000, guid: 1387ab1805a646d1b10620c853bf64d5, type: 2}
+  - {fileID: 11400000, guid: de6dd4a2d9bc420f8cb8296d31d3b0d4, type: 2}
+  - {fileID: 11400000, guid: 4261687ef4de4226a7a5b1cdca0a11ad, type: 2}

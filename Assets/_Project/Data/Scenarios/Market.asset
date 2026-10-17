@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3657de32e3e14923843bdfa9949ddf2, type: 3}
+  m_Name: Market
+  m_EditorClassIdentifier: Assembly-CSharp::ScenarioData
+  scenarioId: market
+  displayName: Market
+  sessionItemCount: 30
+  itemPool:
+  - {fileID: 11400000, guid: 1c9ec91f4fbe4c9bbe1f9fc38a2f2310, type: 2}
+  - {fileID: 11400000, guid: 5666c7324c104153996ee20f8853cf3d, type: 2}
+  - {fileID: 11400000, guid: a66b444881b34baba28182cf318a9527, type: 2}
+  - {fileID: 11400000, guid: f2e4967764a64381abcdd272b1a4b564, type: 2}
+  - {fileID: 11400000, guid: d792bbd15a2f44b6acfda74bb0be2f95, type: 2}
+  - {fileID: 11400000, guid: 6b7c16e36cb3492b952f4f0f6b07698c, type: 2}
+  - {fileID: 11400000, guid: a2f8706a367440e8897c26adfa364143, type: 2}
+  - {fileID: 11400000, guid: 0289d5c2dcd24c4e904f849880f4d9d1, type: 2}
+  - {fileID: 11400000, guid: 318d637de5ef415a85d6e6638feb0d79, type: 2}
+  - {fileID: 11400000, guid: b9a96851d8ce420ab74391a564ef40dc, type: 2}
+  - {fileID: 11400000, guid: d266f9397b3741eeb7dc2f259c8b9cd1, type: 2}
+  - {fileID: 11400000, guid: 6b2ef1c45d704cb5956070f3cbf8dcc8, type: 2}
