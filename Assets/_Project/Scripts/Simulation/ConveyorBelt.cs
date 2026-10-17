@@ -4,6 +4,7 @@ using UnityEngine;
 public class ConveyorBelt : MonoBehaviour
 {
     [SerializeField] private WasteItemFactory factory;
+    [SerializeField] private BeltSpawner spawner;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform endPoint;
     [SerializeField] private float baseSpeed = 0.05f;
@@ -20,11 +21,13 @@ public class ConveyorBelt : MonoBehaviour
         ClearItems();
         speed = baseSpeed;
         isRunning = true;
+        spawner.Begin(scenario);
     }
 
     public void StopBelt()
     {
         isRunning = false;
+        spawner.Stop();
         ClearItems();
     }
 

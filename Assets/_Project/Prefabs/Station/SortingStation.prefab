@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9218326684424678781}
   - component: {fileID: 8283031038723630819}
+  - component: {fileID: 3476117815214144395}
   m_Layer: 0
   m_Name: Belt
   m_TagString: Untagged
@@ -48,9 +49,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConveyorBelt
   factory: {fileID: 4700725576886380343}
+  spawner: {fileID: 3476117815214144395}
   spawnPoint: {fileID: 6676073667594774761}
   endPoint: {fileID: 5835030827530854217}
   baseSpeed: 0.05
+--- !u!114 &3476117815214144395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170555749467695218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7f3f412caaf435a886130a0f2ed481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BeltSpawner
+  belt: {fileID: 8283031038723630819}
+  spawnPoint: {fileID: 6676073667594774761}
+  spacing: 0.12
 --- !u!1 &3393336643998271784
 GameObject:
   m_ObjectHideFlags: 0
