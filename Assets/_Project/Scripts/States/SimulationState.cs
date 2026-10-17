@@ -1,3 +1,6 @@
+using UnityEngine;
+using UnityEngine.XR.ARFoundation;
+
 public class SimulationState : IGameState
 {
     private readonly GameController game;
@@ -9,7 +12,11 @@ public class SimulationState : IGameState
 
     public void Enter()
     {
-        game.UI.HideAll();
+        Time.timeScale = 1f;
+        game.UI.ShowOnly(game.UI.HudScreen);
+        game.Interaction.enabled = true;
+        game.UI.HudScreen.PauseButton.onClick.AddListener(OnPausePressed);
+        ARSession.stateChanged += OnSessionStateChanged;
 
         if (!game.Simulation.IsRunning)
         {
@@ -23,5 +30,27 @@ public class SimulationState : IGameState
 
     public void Exit()
     {
+        game.Interaction.enabled = false;
+        game.UI.HudScreen.PauseButton.onClick.RemoveListener(OnPausePressed);
+        ARSession.stateChanged -= OnSessionStateChanged;
+    }
+
+    private void OnPausePressed()
+    {
+        Pause(false);
+    }
+
+    private void OnSessionStateChanged(ARSessionStateChangedEventArgs args)
+    {
+        if (args.state != ARSessionState.SessionTracking)
+        {
+            Pause(true);
+        }
+    }
+
+    private void Pause(bool trackingLost)
+    {
+        game.PausedState.TrackingLost = trackingLost;
+        game.StateMachine.ChangeState(game.PausedState);
     }
 }

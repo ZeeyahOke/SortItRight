@@ -32,6 +32,13 @@ public class SetupState : IGameState
     {
         game.Placement.ConfirmPlacement();
         game.UI.SetupScreen.SetGuidanceActive(false);
+
+        if (game.Simulation.IsRunning)
+        {
+            game.StateMachine.ChangeState(game.SimulationState);
+            return;
+        }
+
         game.StateMachine.ChangeState(game.ScenarioSelectState);
     }
 }

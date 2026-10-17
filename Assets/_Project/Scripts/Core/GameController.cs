@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlacementReticle reticle;
     [SerializeField] private ScenarioLoader loader;
     [SerializeField] private SimulationManager simulation;
+    [SerializeField] private InteractionController interaction;
     [SerializeField] private List<ScenarioData> scenarios = new List<ScenarioData>();
 
     public GameStateMachine StateMachine => stateMachine;
@@ -17,6 +18,7 @@ public class GameController : MonoBehaviour
     public PlacementReticle Reticle => reticle;
     public ScenarioLoader Loader => loader;
     public SimulationManager Simulation => simulation;
+    public InteractionController Interaction => interaction;
     public IReadOnlyList<ScenarioData> Scenarios => scenarios;
     public ScenarioData SelectedScenario { get; set; }
 
@@ -24,6 +26,7 @@ public class GameController : MonoBehaviour
     public SetupState SetupState { get; private set; }
     public ScenarioSelectState ScenarioSelectState { get; private set; }
     public SimulationState SimulationState { get; private set; }
+    public PausedState PausedState { get; private set; }
 
     private void Awake()
     {
@@ -32,6 +35,7 @@ public class GameController : MonoBehaviour
         SetupState = new SetupState(this);
         ScenarioSelectState = new ScenarioSelectState(this);
         SimulationState = new SimulationState(this);
+        PausedState = new PausedState(this);
     }
 
     private void Start()
