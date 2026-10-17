@@ -4,6 +4,7 @@ public class Bin : MonoBehaviour, IInteractable
 {
     [SerializeField] private BinType type;
     [SerializeField] private int capacity = 8;
+    [SerializeField] private int strikesToReject = 3;
 
     public BinType Type => type;
     public int Capacity => capacity;
@@ -20,6 +21,11 @@ public class Bin : MonoBehaviour, IInteractable
             return SortResult.Refused(type);
         }
 
+        if (State == BinState.Rejected)
+        {
+            State = BinState.Accepting;
+        }
+
         WasteItemData data = item.Data;
         SortResult result = item.EvaluateSort(type);
         item.MarkResolved();
@@ -30,7 +36,7 @@ public class Bin : MonoBehaviour, IInteractable
         }
         else
         {
-            Strikes++;
+            AddStrike();
         }
 
         EventBus.Publish(new ItemSortedEvent(data, type, result));
@@ -56,6 +62,19 @@ public class Bin : MonoBehaviour, IInteractable
         if (IsFull)
         {
             Empty();
+        }
+    }
+
+    private void AddStrike()
+    {
+        Strikes++;
+
+        if (Strikes >= strikesToReject)
+        {
+            FillLevel = 0;
+            Strikes = 0;
+            State = BinState.Rejected;
+            EventBus.Publish(new BinRejectedEvent(type));
         }
     }
 
