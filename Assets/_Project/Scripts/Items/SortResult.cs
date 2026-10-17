@@ -11,6 +11,13 @@ public readonly struct SortResult
         this.correctBin = correctBin;
     }
 
+    public bool WasRefused => !correct && severity == ErrorSeverity.None;
+
+    public static SortResult Refused(BinType bin)
+    {
+        return new SortResult(false, ErrorSeverity.None, bin);
+    }
+
     public static SortResult Correct(BinType bin)
     {
         return new SortResult(true, ErrorSeverity.None, bin);

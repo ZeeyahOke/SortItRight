@@ -10,16 +10,23 @@ public class Bin : MonoBehaviour, IInteractable
     public int FillLevel { get; private set; }
     public int Strikes { get; private set; }
     public BinState State { get; private set; }
+    public bool IsFull => State == BinState.Full;
 
     public SortResult TryAccept(WasteItem item)
     {
+        if (IsFull)
+        {
+            EventBus.Publish(new BinFullEvent(type));
+            return SortResult.Refused(type);
+        }
+
         WasteItemData data = item.Data;
         SortResult result = item.EvaluateSort(type);
         item.MarkResolved();
 
         if (result.correct)
         {
-            FillLevel++;
+            AddToFill();
         }
         else
         {
@@ -34,6 +41,7 @@ public class Bin : MonoBehaviour, IInteractable
     {
         FillLevel = 0;
         State = BinState.Accepting;
+        EventBus.Publish(new BinEmptiedEvent(type));
     }
 
     public void ResetBin()
@@ -45,6 +53,21 @@ public class Bin : MonoBehaviour, IInteractable
 
     public void OnTap()
     {
+        if (IsFull)
+        {
+            Empty();
+        }
+    }
+
+    private void AddToFill()
+    {
+        FillLevel++;
+
+        if (FillLevel >= capacity)
+        {
+            State = BinState.Full;
+            EventBus.Publish(new BinFullEvent(type));
+        }
     }
 
     public void OnLongPress()
