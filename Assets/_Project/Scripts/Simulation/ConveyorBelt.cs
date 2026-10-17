@@ -11,22 +11,20 @@ public class ConveyorBelt : MonoBehaviour
 
     private readonly List<WasteItem> activeItems = new List<WasteItem>();
     private float speed;
-    private bool isRunning;
 
-    public float Speed => speed;
-    public bool IsRunning => isRunning;
+    public bool IsRunning { get; private set; }
 
     public void StartBelt(ScenarioData scenario)
     {
         ClearItems();
         speed = baseSpeed;
-        isRunning = true;
+        IsRunning = true;
         spawner.Begin(scenario);
     }
 
     public void StopBelt()
     {
-        isRunning = false;
+        IsRunning = false;
         spawner.Stop();
         ClearItems();
     }
@@ -34,34 +32,6 @@ public class ConveyorBelt : MonoBehaviour
     public void IncreaseSpeed(float fraction)
     {
         speed *= 1f + fraction;
-    }
-
-    private void Update()
-    {
-        if (isRunning)
-        {
-            MoveItems(Time.deltaTime);
-        }
-    }
-
-    private void MoveItems(float deltaTime)
-    {
-        Vector3 end = endPoint.localPosition;
-        float step = speed * deltaTime;
-
-        for (int i = activeItems.Count - 1; i >= 0; i--)
-        {
-            WasteItem item = activeItems[i];
-
-            if (!item.IsOnBelt)
-            {
-                RemoveAt(i);
-                continue;
-            }
-
-            Transform itemTransform = item.transform;
-            itemTransform.localPosition = Vector3.MoveTowards(itemTransform.localPosition, end, step);
-        }
     }
 
     public WasteItem PlaceOnBelt(WasteItemData data)
@@ -73,17 +43,55 @@ public class ConveyorBelt : MonoBehaviour
         return item;
     }
 
-    private void RemoveAt(int index)
+    private void Update()
     {
-        factory.Recycle(activeItems[index]);
-        activeItems.RemoveAt(index);
+        if (IsRunning)
+        {
+            MoveItems(speed * Time.deltaTime);
+        }
+    }
+
+    private void MoveItems(float step)
+    {
+        Vector3 end = endPoint.localPosition;
+
+        for (int i = activeItems.Count - 1; i >= 0; i--)
+        {
+            WasteItem item = activeItems[i];
+            Transform itemTransform = item.transform;
+
+            if (item.IsOnBelt)
+            {
+                itemTransform.localPosition = Vector3.MoveTowards(itemTransform.localPosition, end, step);
+            }
+
+            if (item.IsOnBelt && itemTransform.localPosition == end)
+            {
+                MarkMissed(item);
+            }
+
+            if (!item.IsOnBelt)
+            {
+                factory.Recycle(item);
+                activeItems.RemoveAt(i);
+            }
+        }
+    }
+
+    private void MarkMissed(WasteItem item)
+    {
+        SortResult result = item.OnMissed();
+        EventBus.Publish(new ItemMissedEvent(item.Data, result, item.AttractsAnimals));
+        item.MarkResolved();
     }
 
     private void ClearItems()
     {
         for (int i = activeItems.Count - 1; i >= 0; i--)
         {
-            RemoveAt(i);
+            factory.Recycle(activeItems[i]);
         }
+
+        activeItems.Clear();
     }
 }
