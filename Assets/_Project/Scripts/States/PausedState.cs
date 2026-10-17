@@ -50,8 +50,6 @@ public class PausedState : IGameState
 
     private void OnMainMenuPressed()
     {
-        game.Simulation.StopSession();
-        Time.timeScale = 1f;
-        game.StateMachine.ChangeState(game.StartState);
+        game.ReturnToMainMenu();
     }
 }

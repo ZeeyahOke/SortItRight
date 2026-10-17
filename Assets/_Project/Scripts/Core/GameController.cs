@@ -44,4 +44,14 @@ public class GameController : MonoBehaviour
     {
         stateMachine.ChangeState(StartState);
     }
+
+    public void ReturnToMainMenu()
+    {
+        simulation.StopSession();
+        simulation.gameObject.SetActive(false);
+        loader.Release();
+        SelectedScenario = null;
+        Time.timeScale = 1f;
+        stateMachine.ChangeState(StartState);
+    }
 }

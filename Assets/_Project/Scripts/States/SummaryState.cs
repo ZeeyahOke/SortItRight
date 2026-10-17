@@ -36,6 +36,6 @@ public class SummaryState : IGameState
 
     private void OnMainMenuPressed()
     {
-        game.StateMachine.ChangeState(game.StartState);
+        game.ReturnToMainMenu();
     }
 }

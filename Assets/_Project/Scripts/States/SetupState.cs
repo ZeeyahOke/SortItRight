@@ -33,7 +33,9 @@ public class SetupState : IGameState
         game.Placement.ConfirmPlacement();
         game.UI.SetupScreen.SetGuidanceActive(false);
 
-        if (game.Simulation.IsRunning)
+        bool canRestart = game.SelectedScenario != null && game.Loader.IsLoaded;
+
+        if (game.Simulation.IsRunning || canRestart)
         {
             game.StateMachine.ChangeState(game.SimulationState);
             return;
