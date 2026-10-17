@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private ScenarioSelectScreen scenarioSelectScreen;
     [SerializeField] private HudScreen hudScreen;
     [SerializeField] private PauseScreen pauseScreen;
+    [SerializeField] private SummaryScreen summaryScreen;
     [SerializeField] private UIScreen[] allScreens;
 
     public StartScreen StartScreen => startScreen;
@@ -14,6 +15,7 @@ public class UIManager : MonoBehaviour
     public ScenarioSelectScreen ScenarioSelectScreen => scenarioSelectScreen;
     public HudScreen HudScreen => hudScreen;
     public PauseScreen PauseScreen => pauseScreen;
+    public SummaryScreen SummaryScreen => summaryScreen;
 
     public void HideAll()
     {

@@ -5,8 +5,8 @@ public class SessionStats
     private const int PointsPerCorrect = 10;
     private const int PenaltyPerMistake = 5;
     private const int PenaltyPerSeriousError = 15;
-    private const float PassAccuracy = 0.8f;
-    private const string MissedLabel = "Missed";
+    public const float PassAccuracy = 0.8f;
+    public const string MissedLabel = "Missed";
 
     private readonly List<MistakeRecord> mistakes = new List<MistakeRecord>();
 

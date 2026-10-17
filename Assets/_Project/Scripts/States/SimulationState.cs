@@ -17,6 +17,7 @@ public class SimulationState : IGameState
         game.Interaction.enabled = true;
         game.UI.HudScreen.PauseButton.onClick.AddListener(OnPausePressed);
         ARSession.stateChanged += OnSessionStateChanged;
+        EventBus.Subscribe<SessionEndedEvent>(OnSessionEnded);
 
         if (!game.Simulation.IsRunning)
         {
@@ -34,6 +35,7 @@ public class SimulationState : IGameState
         game.Interaction.enabled = false;
         game.UI.HudScreen.PauseButton.onClick.RemoveListener(OnPausePressed);
         ARSession.stateChanged -= OnSessionStateChanged;
+        EventBus.Unsubscribe<SessionEndedEvent>(OnSessionEnded);
     }
 
     private void OnPausePressed()
@@ -47,6 +49,12 @@ public class SimulationState : IGameState
         {
             Pause(true);
         }
+    }
+
+    private void OnSessionEnded(SessionEndedEvent e)
+    {
+        game.SummaryState.Result = e;
+        game.StateMachine.ChangeState(game.SummaryState);
     }
 
     private void Pause(bool trackingLost)
