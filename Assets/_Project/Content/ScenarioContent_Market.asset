@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6614710c980484861a8460d76d39bc3d, type: 3}
+  m_Name: ScenarioContent_Market
+  m_EditorClassIdentifier: Assembly-CSharp::ScenarioContent
+  scenarioId: market
+  models:
+  - itemId: RottenTomatoes
+    model:
+      m_LoadableObjectId: {fileID: 1496552788088253377, loadable: 1, guid: 685dd2fa6212c45de9213dfeb277a49f, type: 3}
+  - itemId: CassavaPeels
+    model:
+      m_LoadableObjectId: {fileID: 4707633871494416492, loadable: 1, guid: cb863609f4ddd4335965d29300c794d6, type: 3}
+  - itemId: BananaLeaves
+    model:
+      m_LoadableObjectId: {fileID: 835888162088015980, loadable: 1, guid: a7223df7e7a2f4392babcb5c2ea0b9cd, type: 3}
+  - itemId: FishHeads
+    model:
+      m_LoadableObjectId: {fileID: 6141435801120859213, loadable: 1, guid: d8176208a5d2b472fabf9ae7c57a5442, type: 3}
+  - itemId: CardboardProduceBox
+    model:
+      m_LoadableObjectId: {fileID: 7136148900173593306, loadable: 1, guid: b0ce44f47e23a4965ba4acc905b56ddb, type: 3}
+  - itemId: BrokenPlasticCrate
+    model:
+      m_LoadableObjectId: {fileID: 2062796084273654242, loadable: 1, guid: 4f854169cd7f1434a840741158fee836, type: 3}
+  - itemId: RottenMeat
+    model:
+      m_LoadableObjectId: {fileID: 1511182644570316434, loadable: 1, guid: ef414d276dfa54a1d9ca1c7033fb286a, type: 3}
+  - itemId: ButcherBones
+    model:
+      m_LoadableObjectId: {fileID: 8946186166723736885, loadable: 1, guid: 590908cb329344dc5b20f8b6b1db1be9, type: 3}
+  - itemId: BloodSoakedWrapping
+    model:
+      m_LoadableObjectId: {fileID: 2707871968249692922, loadable: 1, guid: 5d29cbbdefea149c09b3bdb24b8cd843, type: 3}
+  - itemId: MeatClingFilm
+    model:
+      m_LoadableObjectId: {fileID: 1702260144927422032, loadable: 1, guid: 11884e12898214989899912a78cae815, type: 3}
+  - itemId: WaxedProduceBox
+    model:
+      m_LoadableObjectId: {fileID: 8175093713715439853, loadable: 1, guid: 08b94c6559f7841e5a42af24c6f552a6, type: 3}
+  - itemId: BrokenKnifeBlade
+    model:
+      m_LoadableObjectId: {fileID: 2078034397920040852, loadable: 1, guid: fc5fc4fe27f76425e95df85c0846aa1e, type: 3}
