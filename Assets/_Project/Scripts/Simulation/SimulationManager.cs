@@ -4,6 +4,7 @@ using UnityEngine;
 public class SimulationManager : MonoBehaviour
 {
     [SerializeField] private ConveyorBelt belt;
+    [SerializeField] private WasteItemFactory factory;
     [SerializeField] private Bin[] bins;
 
     private readonly SessionStats stats = new SessionStats();
@@ -21,7 +22,7 @@ public class SimulationManager : MonoBehaviour
         recorder = new SessionRecorder(stats);
     }
 
-    public void StartSession(ScenarioData data)
+    public void StartSession(ScenarioData data, IReadOnlyDictionary<string, GameObject> models)
     {
         scenario = data;
         stats.Reset();
@@ -34,6 +35,7 @@ public class SimulationManager : MonoBehaviour
 
         recorder.StopListening();
         recorder.StartListening();
+        factory.SetModels(models);
         belt.StartBelt(data);
         IsRunning = true;
     }
@@ -43,6 +45,7 @@ public class SimulationManager : MonoBehaviour
         IsRunning = false;
         recorder.StopListening();
         belt.StopBelt();
+        factory.SetModels(null);
     }
 
     private void OnDisable()

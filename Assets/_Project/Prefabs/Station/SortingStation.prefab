@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimulationManager
   belt: {fileID: 8283031038723630819}
+  factory: {fileID: 4700725576886380343}
   bins:
   - {fileID: 6717298142873732068}
   - {fileID: 628415364282430}

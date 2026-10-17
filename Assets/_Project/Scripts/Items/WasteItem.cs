@@ -3,11 +3,13 @@ using UnityEngine;
 public abstract class WasteItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject highlight;
+    [SerializeField] private ItemModelView modelView;
 
     public WasteItemData Data { get; private set; }
     public bool IsOnBelt { get; private set; }
     public bool IsSelected { get; private set; }
     public virtual bool AttractsAnimals => false;
+    public ItemModelView ModelView => modelView;
 
     public void Initialise(WasteItemData data)
     {
@@ -37,6 +39,7 @@ public abstract class WasteItem : MonoBehaviour, IInteractable
         Data = null;
         IsOnBelt = false;
         SetSelected(false);
+        modelView.Clear();
         transform.localRotation = Quaternion.identity;
     }
 

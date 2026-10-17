@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WasteItemFactory : MonoBehaviour
@@ -10,6 +11,7 @@ public class WasteItemFactory : MonoBehaviour
     private ObjectPool<RecyclableItem> recyclables;
     private ObjectPool<PerishableItem> perishables;
     private ObjectPool<HazardousItem> hazardous;
+    private IReadOnlyDictionary<string, GameObject> models;
 
     private void Awake()
     {
@@ -21,11 +23,17 @@ public class WasteItemFactory : MonoBehaviour
         hazardous.Prewarm(prewarmPerCategory);
     }
 
+    public void SetModels(IReadOnlyDictionary<string, GameObject> loadedModels)
+    {
+        models = loadedModels;
+    }
+
     public WasteItem Create(WasteItemData data, Vector3 position)
     {
         WasteItem item = GetFromPool(data.Category);
         item.transform.position = position;
         item.Initialise(data);
+        item.ModelView.Show(FindModel(data.ItemId));
         return item;
     }
 
@@ -45,6 +53,16 @@ public class WasteItemFactory : MonoBehaviour
         {
             hazardous.Release(hazardousItem);
         }
+    }
+
+    private GameObject FindModel(string itemId)
+    {
+        if (models != null && models.TryGetValue(itemId, out GameObject model))
+        {
+            return model;
+        }
+
+        return null;
     }
 
     private WasteItem GetFromPool(ItemCategory category)

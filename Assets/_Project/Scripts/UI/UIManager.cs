@@ -11,6 +11,14 @@ public class UIManager : MonoBehaviour
     public SetupScreen SetupScreen => setupScreen;
     public ScenarioSelectScreen ScenarioSelectScreen => scenarioSelectScreen;
 
+    public void HideAll()
+    {
+        foreach (UIScreen screen in allScreens)
+        {
+            screen.Hide();
+        }
+    }
+
     public void ShowOnly(UIScreen screen)
     {
         foreach (UIScreen other in allScreens)

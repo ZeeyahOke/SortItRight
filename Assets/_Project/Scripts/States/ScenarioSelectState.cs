@@ -47,6 +47,7 @@ public class ScenarioSelectState : IGameState
         if (loaded)
         {
             game.SelectedScenario = scenario;
+            game.StateMachine.ChangeState(game.SimulationState);
         }
     }
 }

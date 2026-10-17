@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 5701842435130759875}
   - component: {fileID: 3879200852487647283}
   - component: {fileID: 2240227114708406802}
+  - component: {fileID: 1074078350612163279}
   m_Layer: 0
   m_Name: Item_Recyclable
   m_TagString: Untagged
@@ -159,6 +160,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecyclableItem
   highlight: {fileID: 1453970301204712023}
+  modelView: {fileID: 1074078350612163279}
+--- !u!114 &1074078350612163279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560085200914210131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac233e126bd3f46009dcd64516a2a01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemModelView
+  modelRoot: {fileID: 903756453796288990}
+  standIn: {fileID: 9101670696204182213}
 --- !u!1 &6561272817303209271
 GameObject:
   m_ObjectHideFlags: 0

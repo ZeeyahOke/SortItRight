@@ -2660,6 +2660,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4797971376251212102, guid: 79fd1bd6db4564b008ea4c4d820abe61, type: 3}
   m_PrefabInstance: {fileID: 1628046380}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1628046382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4127682610075986181, guid: 79fd1bd6db4564b008ea4c4d820abe61, type: 3}
+  m_PrefabInstance: {fileID: 1628046380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d470786a393dd45a08b60af578eeca26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimulationManager
 --- !u!1 &1718897552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3166,6 +3177,7 @@ MonoBehaviour:
   placement: {fileID: 1929846029}
   reticle: {fileID: 5772029798353461831}
   loader: {fileID: 191854132}
+  simulation: {fileID: 1628046382}
   scenarios:
   - {fileID: 11400000, guid: cbed4cd796e94a71976bf41f03de023b, type: 2}
   - {fileID: 11400000, guid: f7200bbb23d34ea19930ca55e0984de8, type: 2}
