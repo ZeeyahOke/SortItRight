@@ -102,6 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5901204056189207953}
   - component: {fileID: 9204095731897133949}
+  - component: {fileID: 8590512619127314930}
   m_Layer: 0
   m_Name: Bin_Base
   m_TagString: Untagged
@@ -148,6 +149,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.085, y: 0.11, z: 0.085}
   m_Center: {x: 0, y: 0.055, z: 0}
+--- !u!114 &8590512619127314930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4057601401986745371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558ad36dcb0814b56a20028b840e76ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bin
+  type: 0
+  capacity: 8
 --- !u!1 &6216543912936611877
 GameObject:
   m_ObjectHideFlags: 0

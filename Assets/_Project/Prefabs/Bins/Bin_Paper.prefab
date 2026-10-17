@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8c0d45d4711054a9e87262cb1eaa19f6, type: 2}
+    - target: {fileID: 8590512619127314930, guid: 20968d2d9b68f4552bb4ce276bbedcbe, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8956138818899126290, guid: 20968d2d9b68f4552bb4ce276bbedcbe, type: 3}
       propertyPath: m_text
       value: Paper

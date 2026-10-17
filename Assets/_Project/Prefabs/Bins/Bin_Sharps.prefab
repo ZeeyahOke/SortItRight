@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9fe42ff830e6145d59b65b14c376bb8b, type: 2}
+    - target: {fileID: 8590512619127314930, guid: 20968d2d9b68f4552bb4ce276bbedcbe, type: 3}
+      propertyPath: type
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8956138818899126290, guid: 20968d2d9b68f4552bb4ce276bbedcbe, type: 3}
       propertyPath: m_text
       value: Sharps

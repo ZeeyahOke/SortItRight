@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.045
       objectReference: {fileID: 0}
+    - target: {fileID: 8590512619127314930, guid: 20968d2d9b68f4552bb4ce276bbedcbe, type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8956138818899126290, guid: 20968d2d9b68f4552bb4ce276bbedcbe, type: 3}
       propertyPath: m_text
       value: Residual

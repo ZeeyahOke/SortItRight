@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0218f1d741c7649b88e030ac7efdcee0, type: 2}
+    - target: {fileID: 8590512619127314930, guid: 20968d2d9b68f4552bb4ce276bbedcbe, type: 3}
+      propertyPath: type
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8956138818899126290, guid: 20968d2d9b68f4552bb4ce276bbedcbe, type: 3}
       propertyPath: m_text
       value: Hazardous
