@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a4956c0ed6d4a359b6606c57f98a35, type: 3}
+  m_Name: SoundLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::SoundLibrary
+  correct: {fileID: 8300000, guid: c4c3e140c20ef4683ac95216dd3c4bed, type: 3}
+  wrong: {fileID: 8300000, guid: 6a226b7faf1fc47db81f8e82f5dee0f7, type: 3}
+  seriousError: {fileID: 8300000, guid: 17868d241992d44e59ef0734e3b21f5f, type: 3}
+  missed: {fileID: 8300000, guid: 84beec814386c4603a473a2e67e2c9f0, type: 3}
+  binFull: {fileID: 8300000, guid: a3b243d0cbd9d47d1a0e545d430be1bf, type: 3}
+  binRejected: {fileID: 8300000, guid: 241e7a0f6143a4836830cfc74162a93e, type: 3}
+  itemPicked: {fileID: 8300000, guid: c5ba1ad14357748fcb100c74701d0722, type: 3}
+  buttonPress: {fileID: 8300000, guid: f52dd7bd2df88420ab8883f9b4b2875c, type: 3}
+  sessionPassed: {fileID: 8300000, guid: 519b1bf0577384c6c98923ee23e74c95, type: 3}

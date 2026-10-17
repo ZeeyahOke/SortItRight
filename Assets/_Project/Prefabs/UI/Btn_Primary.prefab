@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5868213823389329843}
   - component: {fileID: 1211362354156227634}
   - component: {fileID: 5533122901566686253}
+  - component: {fileID: 4198457014830187185}
   m_Layer: 5
   m_Name: Btn_Primary
   m_TagString: Untagged
@@ -121,6 +122,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4198457014830187185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709604376781534746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198129e0ec4c74db4b7c93b20536df0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonClickSound
 --- !u!1 &8838485762422729283
 GameObject:
   m_ObjectHideFlags: 0
