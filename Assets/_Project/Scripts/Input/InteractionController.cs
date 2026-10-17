@@ -1,13 +1,22 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class InteractionController : MonoBehaviour
 {
     [SerializeField] private Camera arCamera;
     [SerializeField] private float maxDistance = 5f;
+    [SerializeField] private float longPressSeconds = 0.5f;
 
+    private PressTracker pressTracker;
+    private InteractableFinder finder;
+    private IInteractable pressTarget;
     private WasteItem heldItem;
+
+    private void Awake()
+    {
+        pressTracker = new PressTracker(longPressSeconds);
+        finder = new InteractableFinder(arCamera, maxDistance);
+    }
 
     private void OnDisable()
     {
@@ -17,23 +26,29 @@ public class InteractionController : MonoBehaviour
     private void Update()
     {
         Pointer pointer = Pointer.current;
+        PressPhase phase = pressTracker.Read(pointer, Time.unscaledTime);
 
-        if (pointer == null || !pointer.press.wasPressedThisFrame || IsOverUI())
+        if (phase == PressPhase.Began)
         {
-            return;
+            pressTarget = finder.Find(pointer.position.ReadValue());
         }
-
-        IInteractable target = FindTarget(pointer.position.ReadValue());
-
-        if (target != null)
+        else if (phase == PressPhase.LongPress)
         {
-            HandleTap(target);
+            pressTarget?.OnLongPress();
+        }
+        else if (phase == PressPhase.LongPressEnded)
+        {
+            EventBus.Publish(new InspectEndedEvent());
+        }
+        else if (phase == PressPhase.Tap && pressTarget != null)
+        {
+            HandleTap(pressTarget);
         }
     }
 
     private void HandleTap(IInteractable target)
     {
-        if (target is WasteItem item)
+        if (target is WasteItem item && item.IsOnBelt)
         {
             SelectItem(item);
         }
@@ -75,22 +90,5 @@ public class InteractionController : MonoBehaviour
         }
 
         heldItem = null;
-    }
-
-    private IInteractable FindTarget(Vector2 screenPoint)
-    {
-        Ray ray = arCamera.ScreenPointToRay(screenPoint);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance))
-        {
-            return hit.collider.GetComponentInParent<IInteractable>();
-        }
-
-        return null;
-    }
-
-    private bool IsOverUI()
-    {
-        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
     }
 }
