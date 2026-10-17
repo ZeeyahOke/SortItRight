@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ContentDirectoryBuilder : BuildPlayerProcessor
 {
-    public const string OutputFolder = "ContentBuild/Scenarios";
-    public const string StreamingFolder = "Scenarios";
+    public const string OutputFolder = ContentPaths.EditorOutputFolder;
+    public const string StreamingFolder = ContentPaths.StreamingFolder;
 
     private static readonly string[] RootAssets =
     {
