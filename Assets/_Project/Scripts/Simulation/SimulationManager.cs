@@ -1,0 +1,78 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SimulationManager : MonoBehaviour
+{
+    [SerializeField] private ConveyorBelt belt;
+    [SerializeField] private Bin[] bins;
+
+    private readonly SessionStats stats = new SessionStats();
+    private SessionRecorder recorder;
+    private ScenarioData scenario;
+
+    public SessionStats Stats => stats;
+    public IReadOnlyList<Bin> Bins => bins;
+    public bool IsRunning { get; private set; }
+    public float ElapsedSeconds { get; private set; }
+    public int ItemsLeft => scenario == null ? 0 : scenario.SessionItemCount - stats.ItemsHandled;
+
+    private void Awake()
+    {
+        recorder = new SessionRecorder(stats);
+    }
+
+    public void StartSession(ScenarioData data)
+    {
+        scenario = data;
+        stats.Reset();
+        ElapsedSeconds = 0f;
+
+        foreach (Bin bin in bins)
+        {
+            bin.ResetBin();
+        }
+
+        recorder.StopListening();
+        recorder.StartListening();
+        belt.StartBelt(data);
+        IsRunning = true;
+    }
+
+    public void StopSession()
+    {
+        IsRunning = false;
+        recorder.StopListening();
+        belt.StopBelt();
+    }
+
+    private void OnDisable()
+    {
+        if (IsRunning)
+        {
+            StopSession();
+        }
+    }
+
+    private void Update()
+    {
+        if (!IsRunning)
+        {
+            return;
+        }
+
+        ElapsedSeconds += Time.deltaTime;
+        bool failed = SessionRules.HasFailed(stats);
+
+        if (failed || SessionRules.IsComplete(stats, scenario.SessionItemCount))
+        {
+            EndSession(failed);
+        }
+    }
+
+    private void EndSession(bool failed)
+    {
+        StopSession();
+        SessionOutcome outcome = stats.Outcome(failed);
+        EventBus.Publish(new SessionEndedEvent(scenario.ScenarioId, outcome, ElapsedSeconds, stats));
+    }
+}
