@@ -8,6 +8,7 @@ public class Bin : MonoBehaviour, IInteractable
 
     public BinType Type => type;
     public int Capacity => capacity;
+    public int StrikesToReject => strikesToReject;
     public int FillLevel { get; private set; }
     public int Strikes { get; private set; }
     public BinState State { get; private set; }

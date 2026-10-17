@@ -26,6 +26,7 @@ public class SimulationState : IGameState
 
     public void Tick()
     {
+        game.UI.HudScreen.Refresh(game.Simulation);
     }
 
     public void Exit()
