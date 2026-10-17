@@ -7,6 +7,7 @@ public abstract class WasteItem : MonoBehaviour, IInteractable
     public WasteItemData Data { get; private set; }
     public bool IsOnBelt { get; private set; }
     public bool IsSelected { get; private set; }
+    public virtual bool AttractsAnimals => false;
 
     public void Initialise(WasteItemData data)
     {
