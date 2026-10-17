@@ -6,6 +6,8 @@ public class BeltSpawner : MonoBehaviour
     [SerializeField] private ConveyorBelt belt;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float spacing = 0.12f;
+    [SerializeField] private int itemsPerSpeedUp = 10;
+    [SerializeField] private float speedUpFraction = 0.1f;
 
     private readonly List<WasteItemData> sequence = new List<WasteItemData>();
     private int nextIndex;
@@ -49,6 +51,11 @@ public class BeltSpawner : MonoBehaviour
 
     private void SpawnNext()
     {
+        if (nextIndex > 0 && nextIndex % itemsPerSpeedUp == 0)
+        {
+            belt.IncreaseSpeed(speedUpFraction);
+        }
+
         lastItem = belt.PlaceOnBelt(sequence[nextIndex]);
         nextIndex++;
     }
