@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     public SimulationState SimulationState { get; private set; }
     public PausedState PausedState { get; private set; }
     public SummaryState SummaryState { get; private set; }
+    public HistoryState HistoryState { get; private set; }
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class GameController : MonoBehaviour
         SimulationState = new SimulationState(this);
         PausedState = new PausedState(this);
         SummaryState = new SummaryState(this);
+        HistoryState = new HistoryState(this);
     }
 
     private void Start()

@@ -13,6 +13,7 @@ public class StartState : IGameState
         game.Reticle.gameObject.SetActive(false);
         game.UI.ShowOnly(game.UI.StartScreen);
         game.UI.StartScreen.StartButton.onClick.AddListener(OnStartPressed);
+        game.UI.StartScreen.HistoryButton.onClick.AddListener(OnHistoryPressed);
     }
 
     public void Tick()
@@ -22,10 +23,16 @@ public class StartState : IGameState
     public void Exit()
     {
         game.UI.StartScreen.StartButton.onClick.RemoveListener(OnStartPressed);
+        game.UI.StartScreen.HistoryButton.onClick.RemoveListener(OnHistoryPressed);
     }
 
     private void OnStartPressed()
     {
         game.StateMachine.ChangeState(game.SetupState);
+    }
+
+    private void OnHistoryPressed()
+    {
+        game.StateMachine.ChangeState(game.HistoryState);
     }
 }
