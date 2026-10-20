@@ -14,6 +14,7 @@ public class StartState : IGameState
         game.UI.ShowOnly(game.UI.StartScreen);
         game.UI.StartScreen.StartButton.onClick.AddListener(OnStartPressed);
         game.UI.StartScreen.HistoryButton.onClick.AddListener(OnHistoryPressed);
+        game.UI.StartScreen.LeaderboardButton.onClick.AddListener(OnLeaderboardPressed);
     }
 
     public void Tick()
@@ -24,6 +25,7 @@ public class StartState : IGameState
     {
         game.UI.StartScreen.StartButton.onClick.RemoveListener(OnStartPressed);
         game.UI.StartScreen.HistoryButton.onClick.RemoveListener(OnHistoryPressed);
+        game.UI.StartScreen.LeaderboardButton.onClick.RemoveListener(OnLeaderboardPressed);
     }
 
     private void OnStartPressed()
@@ -34,5 +36,10 @@ public class StartState : IGameState
     private void OnHistoryPressed()
     {
         game.StateMachine.ChangeState(game.HistoryState);
+    }
+
+    private void OnLeaderboardPressed()
+    {
+        game.StateMachine.ChangeState(game.LeaderboardState);
     }
 }

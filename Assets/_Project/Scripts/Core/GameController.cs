@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
     public PausedState PausedState { get; private set; }
     public SummaryState SummaryState { get; private set; }
     public HistoryState HistoryState { get; private set; }
+    public LeaderboardState LeaderboardState { get; private set; }
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class GameController : MonoBehaviour
         PausedState = new PausedState(this);
         SummaryState = new SummaryState(this);
         HistoryState = new HistoryState(this);
+        LeaderboardState = new LeaderboardState(this);
     }
 
     private void Start()
