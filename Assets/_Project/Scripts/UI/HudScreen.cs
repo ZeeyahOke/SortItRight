@@ -11,42 +11,50 @@ public class HudScreen : UIScreen
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private BinStrikeChip[] binChips;
 
-    private int shownItemsLeft = -1;
-    private int shownAccuracy = -1;
-    private int shownSerious = -1;
+    private bool statsChanged = true;
     private int shownSeconds = -1;
 
     public Button PauseButton => pauseButton;
 
-    public void Refresh(SimulationManager simulation)
+    private void OnEnable()
     {
-        SessionStats stats = simulation.Stats;
-
-        if (HasChanged(ref shownItemsLeft, simulation.ItemsLeft))
-        {
-            itemsLeftText.text = shownItemsLeft.ToString();
-        }
-
-        if (HasChanged(ref shownAccuracy, Mathf.RoundToInt(stats.Accuracy() * 100f)))
-        {
-            accuracyText.text = shownAccuracy + "%";
-        }
-
-        if (HasChanged(ref shownSerious, stats.SeriousErrors))
-        {
-            seriousText.text = shownSerious + "/" + SessionRules.SeriousErrorsToFail;
-        }
-
-        if (HasChanged(ref shownSeconds, Mathf.FloorToInt(simulation.ElapsedSeconds)))
-        {
-            timeText.text = (shownSeconds / 60) + ":" + (shownSeconds % 60).ToString("00");
-        }
-
-        RefreshBins(simulation);
+        statsChanged = true;
+        shownSeconds = -1;
+        EventBus.Subscribe<ItemSortedEvent>(OnItemSorted);
+        EventBus.Subscribe<ItemMissedEvent>(OnItemMissed);
+        EventBus.Subscribe<BinRejectedEvent>(OnBinRejected);
     }
 
-    private void RefreshBins(SimulationManager simulation)
+    private void OnDisable()
     {
+        EventBus.Unsubscribe<ItemSortedEvent>(OnItemSorted);
+        EventBus.Unsubscribe<ItemMissedEvent>(OnItemMissed);
+        EventBus.Unsubscribe<BinRejectedEvent>(OnBinRejected);
+    }
+
+    public void Refresh(SimulationManager simulation)
+    {
+        int seconds = Mathf.FloorToInt(simulation.ElapsedSeconds);
+
+        if (seconds != shownSeconds)
+        {
+            shownSeconds = seconds;
+            timeText.SetText("{0}:{1:00}", (float)(seconds / 60), seconds % 60);
+        }
+
+        if (statsChanged)
+        {
+            statsChanged = false;
+            ShowStats(simulation);
+        }
+    }
+
+    private void ShowStats(SimulationManager simulation)
+    {
+        SessionStats stats = simulation.Stats;
+        itemsLeftText.SetText("{0}", (float)simulation.ItemsLeft);
+        accuracyText.SetText("{0}%", Mathf.Round(stats.Accuracy() * 100f));
+        seriousText.SetText("{0}/{1}", (float)stats.SeriousErrors, SessionRules.SeriousErrorsToFail);
         int count = Mathf.Min(binChips.Length, simulation.Bins.Count);
 
         for (int i = 0; i < count; i++)
@@ -56,14 +64,18 @@ public class HudScreen : UIScreen
         }
     }
 
-    private static bool HasChanged(ref int shown, int current)
+    private void OnItemSorted(ItemSortedEvent e)
     {
-        if (shown == current)
-        {
-            return false;
-        }
+        statsChanged = true;
+    }
 
-        shown = current;
-        return true;
+    private void OnItemMissed(ItemMissedEvent e)
+    {
+        statsChanged = true;
+    }
+
+    private void OnBinRejected(BinRejectedEvent e)
+    {
+        statsChanged = true;
     }
 }

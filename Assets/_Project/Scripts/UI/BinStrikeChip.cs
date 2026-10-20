@@ -15,6 +15,6 @@ public class BinStrikeChip : MonoBehaviour
         }
 
         shownStrikes = strikes;
-        strikesText.text = strikes + "/" + maxStrikes;
+        strikesText.SetText("{0}/{1}", (float)strikes, maxStrikes);
     }
 }
