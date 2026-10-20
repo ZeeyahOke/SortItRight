@@ -22,4 +22,9 @@ public class GameStateMachine : MonoBehaviour
     {
         currentState?.Tick();
     }
+
+    private void OnDisable()
+    {
+        ChangeState(null);
+    }
 }

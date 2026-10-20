@@ -45,7 +45,7 @@ public class SimulationState : IGameState
 
     private void OnSessionStateChanged(ARSessionStateChangedEventArgs args)
     {
-        if (args.state != ARSessionState.SessionTracking)
+        if (args.state == ARSessionState.SessionInitializing)
         {
             Pause(true);
         }
