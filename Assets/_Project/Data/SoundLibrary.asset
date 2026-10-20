@@ -18,6 +18,9 @@ MonoBehaviour:
   missed: {fileID: 8300000, guid: 84beec814386c4603a473a2e67e2c9f0, type: 3}
   binFull: {fileID: 8300000, guid: a3b243d0cbd9d47d1a0e545d430be1bf, type: 3}
   binRejected: {fileID: 8300000, guid: 241e7a0f6143a4836830cfc74162a93e, type: 3}
+  binEmptied: {fileID: 8300000, guid: 2cee9eb06c33249bb8be4bd41d70b2c4, type: 3}
   itemPicked: {fileID: 8300000, guid: c5ba1ad14357748fcb100c74701d0722, type: 3}
   buttonPress: {fileID: 8300000, guid: f52dd7bd2df88420ab8883f9b4b2875c, type: 3}
+  sessionStart: {fileID: 8300000, guid: 640c824c06bee44d48fe9da9aeae0183, type: 3}
   sessionPassed: {fileID: 8300000, guid: 519b1bf0577384c6c98923ee23e74c95, type: 3}
+  sessionEnded: {fileID: 8300000, guid: 241e7a0f6143a4836830cfc74162a93e, type: 3}

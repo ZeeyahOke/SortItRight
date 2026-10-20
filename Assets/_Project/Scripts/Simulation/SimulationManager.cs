@@ -38,6 +38,7 @@ public class SimulationManager : MonoBehaviour
         factory.SetModels(models);
         belt.StartBelt(data);
         IsRunning = true;
+        EventBus.Publish(new SessionStartedEvent(data.ScenarioId));
     }
 
     public void StopSession()
