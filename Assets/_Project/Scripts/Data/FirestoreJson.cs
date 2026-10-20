@@ -12,6 +12,15 @@ public static class FirestoreJson
             + "\"dateUtc\":{\"timestampValue\":\"" + entry.dateUtc + "\"}}}";
     }
 
+    public static string TopScoresQuery(string scenarioId, int count)
+    {
+        return "{\"structuredQuery\":{\"from\":[{\"collectionId\":\"leaderboard\"}],"
+            + "\"where\":{\"fieldFilter\":{\"field\":{\"fieldPath\":\"scenarioId\"},\"op\":\"EQUAL\","
+            + "\"value\":{\"stringValue\":\"" + Escape(scenarioId) + "\"}}},"
+            + "\"orderBy\":[{\"field\":{\"fieldPath\":\"score\"},\"direction\":\"DESCENDING\"}],"
+            + "\"limit\":" + count + "}}";
+    }
+
     private static string StringField(string name, string value)
     {
         return "\"" + name + "\":{\"stringValue\":\"" + Escape(value) + "\"}";
