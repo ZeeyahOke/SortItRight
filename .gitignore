@@ -121,3 +121,5 @@ InitTestScene*.unity*
 /[Aa]ssets/UnityXRContent.meta
 /ContentPackages/
 /[Cc]ontent[Bb]uild/
+/[Aa]ssets/StreamingAssets/
+/[Aa]ssets/StreamingAssets.meta
