@@ -10,6 +10,7 @@ public class SummaryScreen : UIScreen
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text numbersText;
     [SerializeField] private TMP_Text mistakesText;
+    [SerializeField] private ScoreSubmitPanel submitPanel;
     [SerializeField] private Button restartButton;
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Color passedColour = new Color(0.18f, 0.62f, 0.36f);
@@ -27,6 +28,7 @@ public class SummaryScreen : UIScreen
         scoreText.text = "Score: " + result.stats.Score();
         numbersText.text = SummaryFormatter.Numbers(result);
         mistakesText.text = SummaryFormatter.Mistakes(result.stats, scenario);
+        submitPanel.Prepare(result.scenarioId, result.stats.Score());
     }
 
     private Color ColourFor(SessionOutcome outcome)
