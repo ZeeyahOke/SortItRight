@@ -49,6 +49,16 @@ public class DataManager : MonoBehaviour
         return sessions.LoadRecent(count);
     }
 
+    public async Awaitable<bool> SubmitScoreAsync(string nickname, string scenarioId, int score)
+    {
+        if (leaderboard == null)
+        {
+            return false;
+        }
+
+        return await leaderboard.SubmitScoreAsync(new LeaderboardEntry(nickname, scenarioId, score));
+    }
+
     private void OnSessionEnded(SessionEndedEvent e)
     {
         sessions.Save(SessionRecord.From(e));
