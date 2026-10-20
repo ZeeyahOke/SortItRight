@@ -4,6 +4,7 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
     private ISessionRepository sessions;
+    private ILeaderboardService leaderboard;
 
     public static DataManager Instance { get; private set; }
 
@@ -17,6 +18,20 @@ public class DataManager : MonoBehaviour
 
         Instance = this;
         sessions = new JsonSessionRepository(Application.persistentDataPath);
+        FirebaseConfig config = FirebaseConfig.Load();
+
+        if (config != null && config.IsValid)
+        {
+            leaderboard = new FirebaseLeaderboardService(config);
+        }
+    }
+
+    private async void Start()
+    {
+        if (leaderboard != null)
+        {
+            await leaderboard.SignInAsync();
+        }
     }
 
     private void OnEnable()
