@@ -52,7 +52,7 @@ MonoBehaviour:
   spawner: {fileID: 3476117815214144395}
   spawnPoint: {fileID: 6676073667594774761}
   endPoint: {fileID: 5835030827530854217}
-  baseSpeed: 0.05
+  baseSpeed: 0.03
 --- !u!114 &3476117815214144395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeltSpawner
   belt: {fileID: 8283031038723630819}
   spawnPoint: {fileID: 6676073667594774761}
-  spacing: 0.12
+  spacing: 0.2
   itemsPerSpeedUp: 10
   speedUpFraction: 0.1
 --- !u!1 &3393336643998271784
